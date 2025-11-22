@@ -36,3 +36,13 @@ export const getCartData = async (token) => {
     console.error("Error while fetching data",error)
   }
 }
+
+export const deleteFromCart = async (foodId, token) => {
+  try {
+    await axios.delete(`${API_URL}/${foodId}`, {
+      headers: { Authorization: `Bearer ${token}` }
+    });
+  } catch (error) {
+    console.error("Error while deleting Cart", error);
+  }
+};
