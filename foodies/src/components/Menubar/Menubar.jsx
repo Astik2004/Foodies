@@ -16,7 +16,7 @@ function Menubar () {
   const logout = () => {
     localStorage.removeItem('token')
     setToken('')
-	setQuantities({})
+	  setQuantities({})
     navigate('/')
   }
   return (
