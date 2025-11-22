@@ -1,7 +1,12 @@
 import { createContext, useEffect, useState } from 'react'
 import { fetchFoodList } from '../service/foodService'
 import axios from 'axios'
-import { addToCart, getCartData, removeQtyFromCart } from '../service/cartService'
+import {
+  addToCart,
+  getCartData,
+  removeQtyFromCart,
+  deleteFromCart
+} from '../service/cartService'
 export const StoreContext = createContext(null)
 
 export const StoreContextProvider = props => {
@@ -10,16 +15,17 @@ export const StoreContextProvider = props => {
   const [token, setToken] = useState('')
   const increaseQty = async foodId => {
     setQuantities(prev => ({ ...prev, [foodId]: (prev[foodId] || 0) + 1 }))
-    await addToCart(foodId,token)
+    await addToCart(foodId, token)
   }
   const decreaseQty = async foodId => {
     setQuantities(prev => ({
       ...prev,
       [foodId]: prev[foodId] > 0 ? prev[foodId] - 1 : 0
     }))
-    await removeQtyFromCart(foodId,token)
+    await removeQtyFromCart(foodId, token)
   }
-  const removeFromCart = foodId => {
+  const removeFromCart = async foodId => {
+    await deleteFromCart(foodId, token)
     setQuantities(prevQuantities => {
       const updatedQuantities = { ...prevQuantities }
       delete updatedQuantities[foodId]
@@ -27,9 +33,8 @@ export const StoreContextProvider = props => {
     })
   }
   const loadCart = async token => {
-    const res=await getCartData(token)
+    const res = await getCartData(token)
     setQuantities(res)
-
   }
   const contextValue = {
     foodList,
@@ -49,7 +54,7 @@ export const StoreContextProvider = props => {
       setFoodList(data)
       if (localStorage.getItem('token')) {
         setToken(localStorage.getItem('token'))
-        await loadCart(localStorage.getItem("token"))
+        await loadCart(localStorage.getItem('token'))
       }
     }
     fetchData()
