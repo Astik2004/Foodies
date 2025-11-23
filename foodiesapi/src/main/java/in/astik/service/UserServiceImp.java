@@ -24,6 +24,9 @@ public class UserServiceImp implements UserService{
 	@Override
 	public UserResponse registerUser(UserRequest request) {
 		log.info("Inside registerUser");
+		if (userRepository.existsByEmail(request.getEmail())) {
+	        throw new RuntimeException("Email already registered");
+	    }
 		UserEntity newUser=convertToEntity(request);
 		newUser=userRepository.save(newUser);
 		return convertToResponse(newUser);
