@@ -10,4 +10,5 @@ import in.astik.entity.UserEntity;
 @Repository
 public interface UserRepository extends MongoRepository<UserEntity, String>{
 	Optional<UserEntity>findByEmail(String email);
+	boolean existsByEmail(String email);
 }
