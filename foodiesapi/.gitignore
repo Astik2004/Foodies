@@ -1,24 +1,58 @@
-HELP.md
+### Maven ###
 target/
-.mvn/wrapper/maven-wrapper.jar
-!**/src/main/**/target/
-!**/src/test/**/target/
-/logs/
+!.mvn/wrapper/maven-wrapper.jar
+.mvn/timing.properties
 
-### STS ###
-.apt_generated
-.classpath
-.factorypath
+### Build ###
+build/
+out/
+
+### Logs ###
+**/logs/
+*.log
+*.out
+
+### JVM ###
+hs_err_pid*
+replay_pid*
+
+### Spring Boot ###
+application-local.properties
+application-*.yml
+application-*.yaml
+
+### Temporary files ###
+*.tmp
+*.bak
+*.swp
+*.lock
+
+### OS ###
+# Windows
+Thumbs.db
+$RECYCLE.BIN/
+Desktop.ini
+
+# macOS
+.DS_Store
+
+### IntelliJ IDEA ###
+.idea/
+*.iml
+*.iws
+*.ipr
+
+### Eclipse ###
 .project
-.settings
+.classpath
+.settings/
+.apt_generated/
+.factorypath
 .springBeans
 .sts4-cache
 
-### IntelliJ IDEA ###
-.idea
-*.iws
-*.iml
-*.ipr
+### VS Code ###
+.vscode/
 
 ### NetBeans ###
 /nbproject/private/
@@ -26,9 +60,20 @@ target/
 /dist/
 /nbdist/
 /.nb-gradle/
-build/
-!**/src/main/**/build/
-!**/src/test/**/build/
 
-### VS Code ###
-.vscode/
+### Package managers ###
+node_modules/
+package-lock.json
+yarn.lock
+
+### Gradle (in case project contains gradle wrapper) ###
+.gradle/
+gradle-app.setting
+!gradle-wrapper.jar
+
+### Docker ###
+/docker/
+*.pid
+
+### Git ###
+.gitignore~
