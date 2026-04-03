@@ -40,8 +40,8 @@ const AddFood = () => {
 	return (
 		<div className="container mt-3">
 			<div className="row justify-content-center">
-				<div className="col-md-6">
-					<div className="card shadow-sm">
+				<div className="col-md-7 col-lg-6 mt-4">
+					<div className="glass-panel p-4 border-0">
 						<div className="card-body">
 							<h4 className="mb-3 fw-bold text-center">Add Food Item 🍽️</h4>
 
@@ -137,8 +137,8 @@ const AddFood = () => {
 									<label htmlFor="price">Price (₹)</label>
 								</div>
 
-								<button className="btn btn-success w-100 py-2 fw-bold">
-									✅ Add Food
+								<button className="btn btn-primary w-100 py-2 mt-3 fw-bold fs-5 shadow-sm hover-scale">
+									Add Food
 								</button>
 							</form>
 						</div>

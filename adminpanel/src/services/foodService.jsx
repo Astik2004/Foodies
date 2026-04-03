@@ -7,7 +7,7 @@ const addFood = async (foodData, image) => {
   formData.append("file", image);
 
   try {
-    await axios.post(API_URL+"add-food", formData, {headers: {"Content-Type": "multipart/form-data",}});
+    await axios.post(API_URL+"add", formData, {headers: {"Content-Type": "multipart/form-data",}});
   } catch (error) {
     console.error("Error adding food:", error);
     throw error;
@@ -16,7 +16,7 @@ const addFood = async (foodData, image) => {
 
 const listFood = async () => {
   try {
-    const response = await axios.get(API_URL + "get-all-foods");
+    const response = await axios.get(API_URL);
     return response.data;
   } catch (error) {
     console.error("Error fetching food list:", error);

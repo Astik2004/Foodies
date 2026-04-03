@@ -33,17 +33,19 @@ const ListFood = () => {
 	}, []);
 
 	return (
-		<div className="pu-5 row justify-content-center">
-			<div className="col-11 card mt-2">
-				<table className="table">
-					<thead>
-						<tr>
-							<th>Image</th>
-							<th>Name</th>
-							<th>Category</th>
-							<th>Price</th>
-							<th>Actions</th>
-						</tr>
+		<div className="pt-4 row justify-content-center">
+			<div className="col-11 glass-panel p-4 border-0 mb-5">
+                <h4 className="fw-bold mb-4">Food Inventory</h4>
+				<div className="table-responsive">
+					<table className="table table-hover align-middle">
+						<thead>
+							<tr>
+								<th className="border-0 text-muted pb-3">Image</th>
+								<th className="border-0 text-muted pb-3">Name</th>
+								<th className="border-0 text-muted pb-3">Category</th>
+								<th className="border-0 text-muted pb-3">Price</th>
+								<th className="border-0 text-muted pb-3 text-end">Action</th>
+							</tr>
 					</thead>
 					<tbody>
 						{list.map((food, index) => (
@@ -56,12 +58,12 @@ const ListFood = () => {
 										width={48}
 									/>
 								</td>
-								<td>{food.name}</td>
-								<td>{food.category}</td>
-								<td>&#8377;{food.price}.00</td>
-								<td className="text-danger">
+								<td className="fw-semibold text-main">{food.name}</td>
+								<td><span className="badge bg-light text-dark px-3 py-2 border">{food.category}</span></td>
+								<td className="fw-bold text-gradient">&#8377;{food.price}.00</td>
+								<td className="text-end">
 									<i
-										className="bi bi-x-circle-fill fs-2"
+										className="bi bi-trash3 text-danger"
                     style={{ fontSize: "20px", cursor: "pointer", transition: "0.1s" }}
                     onMouseEnter={(e) => (e.target.style.transform = "scale(1.3)")}
                     onMouseLeave={(e) => (e.target.style.transform = "scale(1)")}
@@ -72,6 +74,7 @@ const ListFood = () => {
 						))}
 					</tbody>
 				</table>
+                </div>
 			</div>
 		</div>
 	);
