@@ -1,10 +1,7 @@
 package in.astik.controller;
 
-
-import java.awt.Taskbar.Feature;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -18,45 +15,45 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import in.astik.entity.FoodEntity;
 import in.astik.io.FoodRequest;
 import in.astik.io.FoodResponse;
 import in.astik.service.FoodService;
+import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequestMapping("/api/foods")
 @CrossOrigin("*")
+@RequiredArgsConstructor
 public class FoodController {
 	
-	@Autowired
 	private final FoodService foodService;
-	public FoodController(FoodService foodService) {
-		this.foodService = foodService;
-	}
+	private final ObjectMapper objectMapper;
 	
 	@PostMapping("/add")
-	public ResponseEntity<FoodResponse> addFood(@RequestPart("food") String foodRequest, @RequestPart("file") MultipartFile file) 
-			throws Exception {
-		ObjectMapper objectMapper = new ObjectMapper();
+	public ResponseEntity<FoodResponse> addFood(
+            @RequestPart("food") String foodRequest, 
+            @RequestPart("file") MultipartFile file) throws Exception {
+            
 		FoodRequest foodReq = objectMapper.readValue(foodRequest, FoodRequest.class);
-		FoodResponse res=foodService.addFood(foodReq, file);
+		FoodResponse res = foodService.addFood(foodReq, file);
 		return ResponseEntity.status(HttpStatus.CREATED).body(res);
 	}
 	
-	@GetMapping()
-	public ResponseEntity<List<FoodResponse>>getAllFoods(){
-		List<FoodResponse>foods=foodService.getAllFoods();
+	@GetMapping
+	public ResponseEntity<List<FoodResponse>> getAllFoods() {
+		List<FoodResponse> foods = foodService.getAllFoods();
 		return ResponseEntity.ok(foods);
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<FoodResponse>getFood(@PathVariable String id){
-		FoodResponse food=foodService.getFood(id);
+	public ResponseEntity<FoodResponse> getFood(@PathVariable String id) {
+		FoodResponse food = foodService.getFood(id);
 		return ResponseEntity.ok(food);
 	}
+    
 	@DeleteMapping("/delete/{id}")
-	public ResponseEntity<String>deleteFood(@PathVariable String id){
-		String message=foodService.deleteFood(id);
+	public ResponseEntity<String> deleteFood(@PathVariable String id) {
+		String message = foodService.deleteFood(id);
 		return ResponseEntity.ok(message);
 	}
 }
