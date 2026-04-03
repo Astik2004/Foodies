@@ -20,16 +20,17 @@ function Menubar () {
     navigate('/')
   }
   return (
-    <nav className='navbar navbar-expand-lg navbar-light bg-light'>
+    <nav className='navbar navbar-expand-lg sticky-top custom-navbar my-3 mx-auto glass-panel'>
       <div className='container'>
-        <Link to='/'>
+        <Link to='/' className="navbar-brand">
           <img
             src={assets.logo}
             alt='Logo'
-            className='mx-4'
+            className='logo-img hover-scale'
             height={48}
             width={48}
           />
+          <span className="brand-text text-gradient ms-2 fs-3 fw-bold">Foodies</span>
         </Link>
         <button
           className='navbar-toggler'
@@ -43,7 +44,7 @@ function Menubar () {
           <span className='navbar-toggler-icon'></span>
         </button>
         <div className='collapse navbar-collapse' id='navbarSupportedContent'>
-          <ul className='navbar-nav me-auto mb-2 mb-lg-0'>
+          <ul className='navbar-nav mx-auto mb-2 mb-lg-0'>
             <li className='nav-item'>
               <Link
                 className={
@@ -81,61 +82,64 @@ function Menubar () {
             </li>
           </ul>
           <div className='d-flex align-items-center gap-4'>
-            <Link to={`/cart`}>
+            <Link to={`/cart`} className="cart-icon hover-scale">
               <div className='position-relative'>
                 <img
                   src={assets.cart}
                   alt='cart'
-                  height={32}
-                  width={32}
-                  className='position-relative'
+                  height={28}
+                  width={28}
+                  style={{ filter: 'brightness(0) invert(1)' }}
                 />
-                <span className='position-absolute top-0 start-100 translate-middle badge rounded-pill bg-warning'>
-                  {uniqueItemInCart}
-                </span>
+                {uniqueItemInCart > 0 && (
+                  <span className='position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary shadow'>
+                    {uniqueItemInCart}
+                  </span>
+                )}
               </div>
             </Link>
             {!token ? (
-              <>
+              <div className="d-flex gap-2">
                 <button
-                  className='btn btn-outline-primary'
+                  className='btn btn-glass'
                   onClick={() => navigate('/login')}
                 >
                   Login
                 </button>
                 <button
-                  className='btn btn-outline-success'
+                  className='btn btn-gradient'
                   onClick={() => navigate('/register')}
                 >
                   Register
                 </button>
-              </>
+              </div>
             ) : (
               <div className='dropdown text-end'>
                 <a
                   href='#'
-                  className='d-block link-body-emphasis text-decoration-none dropdown-toggle'
+                  className='d-block link-body-emphasis text-decoration-none dropdown-toggle hover-scale'
                   data-bs-toggle='dropdown'
                   aria-expanded='false'
                 >
                   <img
                     src={assets.profile}
                     alt='profile'
-                    width={38}
-                    height={38}
-                    className='rounded-circle'
+                    width={40}
+                    height={40}
+                    className='rounded-circle border border-2 border-primary object-fit-cover'
                   />
                 </a>
 
-                <ul className='dropdown-menu text-small'>
+                <ul className='dropdown-menu dropdown-menu-end dropdown-menu-dark shadow-lg glass-panel border-0 text-small'>
                   <li
-                    className='dropdown-item'
+                    className='dropdown-item py-2'
                     onClick={() => navigate('/myorder')}
                   >
-                    Orders
+                    <i className="bi bi-box-seam me-2 text-primary"></i> Orders
                   </li>
-                  <li className='dropdown-item' onClick={logout}>
-                    Logout
+                  <li><hr class="dropdown-divider border-secondary" /></li>
+                  <li className='dropdown-item py-2 text-danger' onClick={logout}>
+                    <i className="bi bi-box-arrow-right me-2"></i> Logout
                   </li>
                 </ul>
               </div>
