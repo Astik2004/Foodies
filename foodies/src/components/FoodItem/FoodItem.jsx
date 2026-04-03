@@ -35,7 +35,7 @@ export default function FoodItem({ food }) {
 						className="card-img-top w-100 object-fit-cover food-img"
 						style={{ height: "240px", objectPosition: "center" }}
 					/>
-					<div className="price-tag position-absolute top-0 end-0 m-3 px-3 py-1 rounded-pill fw-bold shadow-lg text-white">
+					<div className="price-tag position-absolute top-0 end-0 m-3 px-3 py-1 rounded-pill fw-bold shadow-lg">
 						₹{food.price}
 					</div>
 				</div>
