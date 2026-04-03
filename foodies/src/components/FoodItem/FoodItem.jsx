@@ -49,46 +49,33 @@ export default function FoodItem({ food }) {
 						</div>
 					</div>
 					
-					<p className="card-text text-muted text-start fs-6 mb-4 line-clamp-2">
+					<p className="card-text text-secondary text-start fs-6 mb-4">
 						{food.description}
 					</p>
 
-					<div className="mt-auto d-flex justify-content-between align-items-center">
-						<button
-							className="btn btn-glass flex-grow-1 me-3 hover-scale"
-							onClick={(e) => {
-								e.stopPropagation();
-								goToDetails();
-							}}
-						>
-							View
-						</button>
-
+					<div className="mt-3">
 						{quantities[food.id] > 0 ? (
-							<div className="d-flex align-items-center gap-2 bg-glass rounded-pill px-2 py-1 border border-secondary shadow-sm">
+							<div className="d-flex align-items-center justify-content-between bg-white border border-primary rounded-3 shadow-sm px-2 py-1 mx-auto" style={{maxWidth: '120px'}}>
 								<button
-									className="btn rounded-circle p-0 text-danger d-flex align-items-center justify-content-center hover-scale"
-									style={{width: '32px', height: '32px'}}
+									className="btn btn-sm p-1 text-primary d-flex align-items-center justify-content-center fw-bold"
 									onClick={handleDecrease}
 								>
-									<i className="bi bi-dash fs-5"></i>
+									<i className="bi bi-dash"></i>
 								</button>
-								<span className="fw-bold fs-5 px-1">{quantities[food.id]}</span>
+								<span className="fw-bold fs-6 text-primary">{quantities[food.id]}</span>
 								<button
-									className="btn rounded-circle p-0 text-success d-flex align-items-center justify-content-center hover-scale"
-									style={{width: '32px', height: '32px'}}
+									className="btn btn-sm p-1 text-primary d-flex align-items-center justify-content-center fw-bold"
 									onClick={handleIncrease}
 								>
-									<i className="bi bi-plus fs-5"></i>
+									<i className="bi bi-plus"></i>
 								</button>
 							</div>
 						) : (
 							<button
-								className="btn btn-gradient rounded-circle p-0 d-flex align-items-center justify-content-center hover-scale shadow"
-								style={{width: '45px', height: '45px'}}
+								className="btn btn-outline-primary fw-bold px-4 rounded-3 d-block mx-auto shadow-sm"
 								onClick={handleIncrease}
 							>
-								<i className="bi bi-plus-lg fs-5"></i>
+								ADD
 							</button>
 						)}
 					</div>

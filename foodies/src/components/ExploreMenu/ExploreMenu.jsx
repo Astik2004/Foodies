@@ -43,14 +43,14 @@ function ExploreMenu({category,setCategory}) {
                       key={index} 
                       onClick={()=>{setCategory(prev=>prev===item.category?'All':item.category)}}
                     >
-                        <div className={`img-wrapper rounded-circle p-1 mb-3 mx-auto ${isActive ? 'gradient-border' : 'glass-border'}`}>
+                        <div className={`img-wrapper rounded-circle p-1 mb-2 mx-auto ${isActive ? 'active-border' : 'inactive-border'}`}>
                           <img 
                             src={item.icon} 
                             alt={item.category} 
-                            className="rounded-circle object-fit-cover w-100 h-100" 
+                            className="rounded-circle object-fit-cover w-100 h-100 shadow-sm" 
                           />
                         </div>
-                        <p className={`mt-2 fw-semibold fs-5 ${isActive ? 'text-primary' : 'text-light'}`}>{item.category}</p>
+                        <p className={`mt-2 fw-semibold fs-6 mb-0 ${isActive ? 'text-primary' : 'text-dark'}`}>{item.category}</p>
                     </div>
                 )
             })}

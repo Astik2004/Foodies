@@ -52,7 +52,7 @@ const Register = () => {
                 <div className='form-floating mb-4'>
                   <input
                     type='text'
-                    className='form-control bg-glass text-light border-secondary border-opacity-50'
+                    className='form-control bg-glass text-main border-secondary border-opacity-25'
                     id='floatingName'
                     placeholder='John Doe'
                     name='name'
@@ -66,7 +66,7 @@ const Register = () => {
                 <div className='form-floating mb-4'>
                   <input
                     type='email'
-                    className='form-control bg-glass text-light border-secondary border-opacity-50'
+                    className='form-control bg-glass text-main border-secondary border-opacity-25'
                     id='floatingInput'
                     placeholder='name@example.com'
                     name='email'
@@ -80,7 +80,7 @@ const Register = () => {
                 <div className='form-floating mb-4'>
                   <input
                     type='password'
-                    className='form-control bg-glass text-light border-secondary border-opacity-50'
+                    className='form-control bg-glass text-main border-secondary border-opacity-25'
                     id='floatingPassword'
                     placeholder='Password'
                     name='password'

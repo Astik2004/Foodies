@@ -9,9 +9,16 @@ function Menubar () {
   const navigate = useNavigate()
   const [active, setActive] = useState('home')
   const { quantities, token, setToken, setQuantities }=useContext(StoreContext)
-  const uniqueItemInCart = Object.values(quantities || {}).filter(
-    qty => qty > 0
-  ).length
+  const uniqueItemInCart = (() => {
+    try {
+      return Object.values(quantities || {}).filter(
+        qty => typeof qty === 'number' && qty > 0
+      ).length;
+    } catch (e) {
+      console.warn("Error calculating cart size:", e);
+      return 0;
+    }
+  })();
 
   const logout = () => {
     localStorage.removeItem('token')
@@ -84,13 +91,7 @@ function Menubar () {
           <div className='d-flex align-items-center gap-4'>
             <Link to={`/cart`} className="cart-icon hover-scale">
               <div className='position-relative'>
-                <img
-                  src={assets.cart}
-                  alt='cart'
-                  height={28}
-                  width={28}
-                  style={{ filter: 'brightness(0) invert(1)' }}
-                />
+                <i className="bi bi-cart3 text-primary mt-1" style={{ fontSize: '1.5rem' }}></i>
                 {uniqueItemInCart > 0 && (
                   <span className='position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary shadow'>
                     {uniqueItemInCart}
@@ -137,7 +138,7 @@ function Menubar () {
                   >
                     <i className="bi bi-box-seam me-2 text-primary"></i> Orders
                   </li>
-                  <li><hr class="dropdown-divider border-secondary" /></li>
+                  <li><hr className="dropdown-divider border-secondary" /></li>
                   <li className='dropdown-item py-2 text-danger' onClick={logout}>
                     <i className="bi bi-box-arrow-right me-2"></i> Logout
                   </li>

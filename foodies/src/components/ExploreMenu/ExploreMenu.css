@@ -2,6 +2,7 @@
     scrollbar-width: none; /* Firefox */
     -ms-overflow-style: none; /* IE/Edge */
     scroll-snap-type: x mandatory;
+    padding-bottom: 1rem;
 }
 
 .explore-menu-list::-webkit-scrollbar {
@@ -9,29 +10,29 @@
 }
 
 .explore-menu-list-item {
-    min-width: 140px;
+    min-width: 110px;
     cursor: pointer;
     scroll-snap-align: start;
-    transition: var(--transition-smooth);
+    transition: var(--transition-fast);
 }
 
 .img-wrapper {
-    width: 120px;
-    height: 120px;
-    transition: var(--transition-smooth);
-    background: rgba(255, 255, 255, 0.05);
+    width: 90px;
+    height: 90px;
+    transition: var(--transition-fast);
+    background: #fff;
 }
 
-.glass-border {
-    border: 2px solid var(--glass-border);
+.inactive-border {
+    border: 2px solid transparent;
 }
 
-.gradient-border {
-    background: var(--primary-gradient);
-    padding: 3px !important; /* Thicker gradient border */
-    box-shadow: 0 0 20px rgba(139, 92, 246, 0.4);
+.active-border {
+    border: 2px solid var(--primary);
+    padding: 2px !important;
+    box-shadow: 0 4px 10px rgba(251, 146, 60, 0.3);
 }
 
 .active-item {
-    transform: translateY(-5px);
+    transform: translateY(-3px);
 }

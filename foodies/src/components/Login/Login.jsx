@@ -56,7 +56,7 @@ function Login() {
                 <div className='form-floating mb-4'>
                   <input
                     type='email'
-                    className='form-control bg-glass text-light border-secondary border-opacity-50'
+                    className='form-control bg-glass text-main border-secondary border-opacity-25'
                     id='floatingInput'
                     placeholder='name@example.com'
                     name='email'
@@ -70,7 +70,7 @@ function Login() {
                 <div className='form-floating mb-4'>
                   <input
                     type='password'
-                    className='form-control bg-glass text-light border-secondary border-opacity-50'
+                    className='form-control bg-glass text-main border-secondary border-opacity-25'
                     id='floatingPassword'
                     placeholder='Password'
                     name='password'
