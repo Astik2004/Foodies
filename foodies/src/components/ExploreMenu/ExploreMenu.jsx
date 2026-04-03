@@ -9,37 +9,52 @@ function ExploreMenu({category,setCategory}) {
     const scrollLeft=()=>{
         if(menuRef.current)
         {
-            menuRef.current.scrollBy({left:-200,behavior:'smooth'});
+            menuRef.current.scrollBy({left:-300,behavior:'smooth'});
         }
     }
     const scrollRight=()=>{
         if(menuRef.current)
         {
-            menuRef.current.scrollBy({left:200,behavior:'smooth'});
+            menuRef.current.scrollBy({left:300,behavior:'smooth'});
         }
     }
   return (
-    <div className="explore-menu position-relative">
-        <h1 className="d-flex align-items-center justify-content-between">
-          <span>Explore Our Menu</span>
-          <div className="d-flex">
-            <i className="bi bi-arrow-left-circle scroll-icon" onClick={scrollLeft}></i>
-            <i className="bi bi-arrow-right-circle scroll-icon" onClick={scrollRight}></i>
+    <div className="explore-menu position-relative my-5 glass-panel p-5">
+        <div className="d-flex align-items-center justify-content-between mb-4">
+          <h2 className="display-6 fw-bold mb-0">Explore Our Menu</h2>
+          <div className="d-flex gap-3">
+            <button className="btn btn-glass rounded-circle p-2 d-flex align-items-center justify-content-center hover-scale" style={{width: '45px', height: '45px'}} onClick={scrollLeft}>
+              <i className="bi bi-chevron-left fs-5"></i>
+            </button>
+            <button className="btn btn-glass rounded-circle p-2 d-flex align-items-center justify-content-center hover-scale" style={{width: '45px', height: '45px'}} onClick={scrollRight}>
+              <i className="bi bi-chevron-right fs-5"></i>
+            </button>
           </div>
-        </h1>
-        <p className="mt-3">Discover a variety of delicious dishes crafted with the freshest ingredients.</p>
-        <div className="d-flex justify-content-between gap-4 overflow-auto explore-menu-list" ref={menuRef}>
+        </div>
+        <p className="fs-5 text-muted mb-5 col-md-8">Discover a variety of delicious dishes crafted with the freshest ingredients to satisfy your cravings.</p>
+        
+        <div className="d-flex gap-4 overflow-auto explore-menu-list py-3" ref={menuRef}>
           {
             categories.map((item, index) => {
+                const isActive = item.category === category;
                 return (
-                    <div className="text-center explore-menu-list-item" key={index} onClick={()=>{setCategory(prev=>prev===item.category?'All':item.category)}}>
-                        <img src={item.icon} alt="" className={item.category===category?'rounded-circle active':'rounded-circle'} height={128} width={128}/>
-                        <p className='mt-2 fw-bold'>{item.category}</p>
+                    <div 
+                      className={`text-center explore-menu-list-item hover-scale ${isActive ? 'active-item' : ''}`} 
+                      key={index} 
+                      onClick={()=>{setCategory(prev=>prev===item.category?'All':item.category)}}
+                    >
+                        <div className={`img-wrapper rounded-circle p-1 mb-3 mx-auto ${isActive ? 'gradient-border' : 'glass-border'}`}>
+                          <img 
+                            src={item.icon} 
+                            alt={item.category} 
+                            className="rounded-circle object-fit-cover w-100 h-100" 
+                          />
+                        </div>
+                        <p className={`mt-2 fw-semibold fs-5 ${isActive ? 'text-primary' : 'text-light'}`}>{item.category}</p>
                     </div>
                 )
             })}
         </div>
-        <hr />
     </div>
   )
 }
