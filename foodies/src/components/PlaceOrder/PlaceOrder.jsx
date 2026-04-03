@@ -1,135 +1,134 @@
 import React, { useContext } from 'react';
 import './PlaceOrder.css';
-import {assets} from '../../assets/assets'
-import {StoreContext} from '../../context/StoreContext'
-import {calculateCartTotals} from '../../util/cartUtils'
+import { StoreContext } from '../../context/StoreContext';
+import { calculateCartTotals } from '../../util/cartUtils';
 
 function PlaceOrder() {
-  const{foodList,quantities,setQuantities}=useContext(StoreContext);
-  //cart item
-	const cartItems = foodList.filter((food) => quantities[food.id] > 0);
+  const { foodList, quantities } = useContext(StoreContext);
+  
+  // Cart items
+  const cartItems = foodList.filter((food) => quantities[food.id] > 0);
+  const { total, tax, subTotal, shipping } = calculateCartTotals(cartItems, quantities);
 
-  const{total,tax,subTotal,shipping}=calculateCartTotals(cartItems,quantities)
   return (
-    <div className="container mt-4 mb-4">
+    <div className="container mt-5 mb-5 min-vh-100">
       <main>
-        <div className="py-5 text-center"> <img className="d-block mx-auto mb-4"
-                    src={assets.logo} alt="" width="98" height="98"/>               
-            </div>
+        <div className="py-4 text-center mb-4">
+          <h2 className="display-5 fw-bold text-gradient">Secure Checkout</h2>
+          <p className="text-muted lead">Complete your order with a few simple steps.</p>
+        </div>
+
         <div className="row g-5">
-          {/* Cart Section */}
+          {/* Cart Section (Order Summary) */}
           <div className="col-md-5 col-lg-4 order-md-last">
-            <h4 className="d-flex justify-content-between align-items-center mb-3">
-              <span className="text-primary">Your cart</span>
-              <span className="badge bg-primary rounded-pill">{cartItems.length}</span>
-            </h4>
+            <div className="glass-panel p-4 sticky-top border-0 mb-4" style={{top: '20px'}}>
+              <h4 className="d-flex justify-content-between align-items-center mb-4 pb-2 border-bottom border-secondary border-opacity-50">
+                <span className="text-light fw-bold">Order Summary</span>
+                <span className="badge bg-primary rounded-pill shadow-sm">{cartItems.length}</span>
+              </h4>
 
-            <ul className="list-group mb-3">
-             {
-              cartItems.map(item=>(
-                 <li className="list-group-item d-flex justify-content-between lh-sm">
-                <div>
-                  <h6 className="my-0">{item.name}</h6>
-                  <small className="text-body-secondary">
-                    Qty: {quantities[item.id]}
-                  </small>
-                </div>
-                <span className="text-body-secondary">&#8377;{item.price*quantities[item.id]}</span>
-              </li>
-              ))
-             }
+              <div className="mb-4" style={{ maxHeight: '300px', overflowY: 'auto' }}>
+                {cartItems.map(item => (
+                  <div key={item.id} className="d-flex justify-content-between align-items-center mb-3">
+                    <div>
+                      <h6 className="my-0 text-light fw-semibold">{item.name}</h6>
+                      <small className="text-muted">Qty: {quantities[item.id]}</small>
+                    </div>
+                    <span className="text-light fw-bold">&#8377;{(item.price * quantities[item.id]).toFixed(2)}</span>
+                  </div>
+                ))}
+              </div>
+              
+              <hr className="border-secondary mb-3" />
 
-              <li className="list-group-item d-flex justify-content-between lh-sm">
-                <div>
-                  <span>
-                    Shipping
-                  </span>
-                </div>
-                <span className="text-body-secondary">&#8377;{subTotal===0?0.0:shipping.toFixed(2)}</span>
-              </li>
+              <div className="d-flex justify-content-between mb-2">
+                <span className="text-muted">Subtotal</span>
+                <span className="text-light">&#8377;{subTotal.toFixed(2)}</span>
+              </div>
+              <div className="d-flex justify-content-between mb-2">
+                <span className="text-muted">Shipping</span>
+                <span className="text-light">&#8377;{subTotal === 0 ? '0.00' : shipping.toFixed(2)}</span>
+              </div>
+              <div className="d-flex justify-content-between mb-4">
+                <span className="text-muted">Tax (10%)</span>
+                <span className="text-light">&#8377;{tax.toFixed(2)}</span>
+              </div>
 
-              <li className="list-group-item d-flex justify-content-between lh-sm">
-                <div>
-                  <span>Tax(10%)</span>
-                </div>
-                <span className="text-body-secondary">&#8377;{tax.toFixed(2)}</span>
-              </li>
+              <div className="d-flex justify-content-between align-items-center bg-glass p-3 rounded-3 border border-secondary border-opacity-50 mb-4">
+                <span className="fw-bold fs-5 text-light">Total (INR)</span>
+                <strong className="fs-4 text-gradient">&#8377;{total.toFixed(2)}</strong>
+              </div>
 
-              <li className="list-group-item d-flex justify-content-between">
-                <span>Total (INR)</span>
-                <strong>&#8377;{total.toFixed(2)}</strong>
-              </li>
-            </ul>
-
-            <form className="card p-2">
-              <div className="input-group">
-                <input type="text" className="form-control" placeholder="Promo code" />
-                <button type="submit" className="btn btn-secondary">
+              <form className="input-group mb-2">
+                <input type="text" className="form-control bg-glass text-light border-secondary border-opacity-50" placeholder="Promo code" />
+                <button type="button" className="btn btn-secondary px-4 fw-semibold border-secondary border-opacity-50">
                   Redeem
                 </button>
-              </div>
-            </form>
+              </form>
+            </div>
           </div>
 
           {/* Billing Section */}
           <div className="col-md-7 col-lg-8">
-            <h4 className="mb-3">Billing address</h4>
-            <form className="needs-validation" noValidate>
-              <div className="row g-3">
-                <div className="col-sm-6">
-                  <label htmlFor="firstName" className="form-label">First name</label>
-                  <input type="text" className="form-control" id="firstName" required placeholder='Jone' />
+            <div className="glass-panel p-4 p-md-5 border-0">
+              <h4 className="mb-4 text-light fw-bold border-bottom border-secondary border-opacity-50 pb-3">Billing & Delivery Address</h4>
+              
+              <form className="needs-validation" noValidate>
+                <div className="row g-4">
+                  <div className="col-sm-6">
+                    <label htmlFor="firstName" className="form-label text-muted">First name</label>
+                    <input type="text" className="form-control bg-glass text-light border-secondary border-opacity-50" id="firstName" required placeholder="John" />
+                  </div>
+
+                  <div className="col-sm-6">
+                    <label htmlFor="lastName" className="form-label text-muted">Last name</label>
+                    <input type="text" className="form-control bg-glass text-light border-secondary border-opacity-50" id="lastName" required placeholder="Doe" />
+                  </div>
+
+                  <div className="col-12">
+                    <label htmlFor="email" className="form-label text-muted">Email</label>
+                    <input type="email" className="form-control bg-glass text-light border-secondary border-opacity-50" id="email" placeholder="you@example.com" />
+                  </div>
+
+                  <div className="col-12">
+                    <label htmlFor="phone" className="form-label text-muted">Phone Number</label>
+                    <input type="number" className="form-control bg-glass text-light border-secondary border-opacity-50" id="phone" placeholder="91XXXXXXXX" />
+                  </div>
+
+                  <div className="col-12">
+                    <label htmlFor="address" className="form-label text-muted">Address</label>
+                    <input type="text" className="form-control bg-glass text-light border-secondary border-opacity-50" id="address" placeholder="1234 Main St" required />
+                  </div>
+
+                  <div className="col-md-5">
+                    <label htmlFor="country" className="form-label text-muted">Country</label>
+                    <select className="form-select bg-glass text-light border-secondary border-opacity-50" id="country" required>
+                      <option value="">Choose...</option>
+                      <option>India</option>
+                    </select>
+                  </div>
+
+                  <div className="col-md-4">
+                    <label htmlFor="state" className="form-label text-muted">State</label>
+                    <select className="form-select bg-glass text-light border-secondary border-opacity-50" id="state" required>
+                      <option value="">Choose...</option>
+                      <option>New Delhi</option>
+                    </select>
+                  </div>
+
+                  <div className="col-md-3">
+                    <label htmlFor="zip" className="form-label text-muted">Zip / Postal Code</label>
+                    <input type="number" className="form-control bg-glass text-light border-secondary border-opacity-50" id="zip" placeholder="110052" required />
+                  </div>
                 </div>
 
-                <div className="col-sm-6">
-                  <label htmlFor="lastName" className="form-label">Last name</label>
-                  <input type="text" className="form-control" id="lastName" required placeholder='Doe'/>
-                </div>
+                <hr className="my-5 border-secondary" />
 
-                <div className="col-12">
-                  <label htmlFor="email" className="form-label">
-                    Email 
-                  </label>
-                  <input type="email" className="form-control" id="email" placeholder="you@example.com" />
-                </div>
-                <div className="col-12">
-                  <label htmlFor="phone" className="form-label">
-                    Phone Number
-                  </label>
-                  <input type="number" className="form-control" id="address2" placeholder="91XXXXXXXX" />
-                </div>
-                <div className="col-12">
-                  <label htmlFor="address" className="form-label">Address</label>
-                  <input type="text" className="form-control" id="address" placeholder="1234 Main St" required />
-                </div>
-
-                <div className="col-md-5">
-                  <label htmlFor="country" className="form-label">Country</label>
-                  <select className="form-select" id="country" required>
-                    <option value="">Choose...</option>
-                    <option>India</option>
-                  </select>
-                </div>
-
-                <div className="col-md-4">
-                  <label htmlFor="state" className="form-label">State</label>
-                  <select className="form-select" id="state" required>
-                    <option value="">Choose...</option>
-                    <option>New Delhi</option>
-                  </select>
-                </div>
-
-                <div className="col-md-3">
-                  <label htmlFor="zip" className="form-label">Zip</label>
-                  <input type="number" className="form-control" id="zip" placeholder='110052' required />
-                </div>
-              </div>
-
-              <hr className="my-4" />
-              <button className="w-100 btn btn-primary btn-lg" type="submit" disabled={cartItems.length===0}>
-                Continue to checkout
-              </button>
-            </form>
+                <button className="w-100 btn btn-gradient btn-lg py-3 fw-bold shadow hover-scale" type="submit" disabled={cartItems.length === 0}>
+                  Confirm Order & Pay <i className="bi bi-shield-lock ms-2"></i>
+                </button>
+              </form>
+            </div>
           </div>
         </div>
       </main>

@@ -4,9 +4,9 @@ import FoodItem from "../FoodItem/FoodItem";
 
 function FoodDisplay({category,searchText}) {
 	const { foodList } = useContext(StoreContext);
-	const filterFoods=foodList.filter(food=>(
+	const filterFoods=(foodList || []).filter(food=>(
 		(category==='All' || food.category===category) &&
-		food.name.toLowerCase().includes(searchText.toLowerCase())
+		(food.name || "").toLowerCase().includes((searchText || "").toLowerCase())
 	))
 
 	return (

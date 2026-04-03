@@ -9,7 +9,7 @@ function Menubar () {
   const navigate = useNavigate()
   const [active, setActive] = useState('home')
   const { quantities, token, setToken, setQuantities }=useContext(StoreContext)
-  const uniqueItemInCart = Object.values(quantities).filter(
+  const uniqueItemInCart = Object.values(quantities || {}).filter(
     qty => qty > 0
   ).length
 

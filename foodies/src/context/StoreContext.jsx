@@ -33,8 +33,17 @@ export const StoreContextProvider = props => {
     })
   }
   const loadCart = async token => {
-    const res = await getCartData(token)
-    setQuantities(res)
+    try {
+      const res = await getCartData(token)
+      if (res) {
+        setQuantities(res)
+      } else {
+        setQuantities({})
+      }
+    } catch (error) {
+      console.error("Failed to load cart", error)
+      setQuantities({})
+    }
   }
   const contextValue = {
     foodList,
