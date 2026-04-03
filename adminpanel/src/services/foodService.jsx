@@ -1,5 +1,5 @@
 import axios from "axios";
-const API_URL = "http://localhost:8080/api/foods/";
+const API_URL = "http://localhost:8080/api/foods";
 
 const addFood = async (foodData, image) => {
   const formData = new FormData();
@@ -7,7 +7,7 @@ const addFood = async (foodData, image) => {
   formData.append("file", image);
 
   try {
-    await axios.post(API_URL+"add", formData, {headers: {"Content-Type": "multipart/form-data",}});
+    await axios.post(API_URL+"/add", formData, {headers: {"Content-Type": "multipart/form-data",}});
   } catch (error) {
     console.error("Error adding food:", error);
     throw error;
@@ -30,13 +30,12 @@ const deleteFood = async (id) => {
     if (!confirmDelete) {
       return false; 
     }
-    const response = await axios.delete(`${API_URL}delete/${id}`);
+    const response = await axios.delete(`${API_URL}/delete/${id}`);
     return response.status === 200;
   } catch (error) {
     console.error("Error deleting food:", error);
     throw error;
   }
 };
-
 
 export { addFood, listFood, deleteFood };
