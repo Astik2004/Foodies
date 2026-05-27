@@ -1,9 +1,12 @@
 package in.astik.entity;
 
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import lombok.AllArgsConstructor;
@@ -21,12 +24,9 @@ public class CartEntity {
 	private String id;
 	private String userId;
 	private Map<String, Integer>items=new HashMap<>();
-	
+
 	public CartEntity(String userId, Map<String, Integer> items) {
 		this.userId = userId;
 		this.items = items;
 	}
-	
-	
-	
 }

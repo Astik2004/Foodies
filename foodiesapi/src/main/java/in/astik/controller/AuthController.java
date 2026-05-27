@@ -5,7 +5,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import in.astik.io.AuthenticationRequest;
 import in.astik.io.AuthenticationResponse;
 import in.astik.service.AppUserDetailService;
-import in.astik.util.JwtUtil;
+import in.astik.utils.JwtUtil;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 

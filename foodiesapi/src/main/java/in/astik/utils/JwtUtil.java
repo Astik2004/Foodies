@@ -1,11 +1,9 @@
-package in.astik.util;
+package in.astik.utils;
 
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
-
-import javax.xml.crypto.Data;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
