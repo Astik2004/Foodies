@@ -1,1 +1,129 @@
-/.metadata/
+##################################################
+# PROJECT ROOT GITIGNORE - FULL STACK APP
+##################################################
+
+### IDE ###
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.project
+.classpath
+.settings/
+.metadata/
+*.iml
+*.iws
+*.ipr
+
+### Environment & Secrets ###
+.env
+.env.local
+.env.*.local
+.env.production.local
+*.pem
+*.key
+*.crt
+secrets/
+
+### Build & Output ###
+target/
+dist/
+build/
+out/
+*.jar
+*.war
+*.ear
+*.class
+*.o
+
+### Logs ###
+logs/
+*.log
+*.log.*
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+### Dependencies ###
+node_modules/
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+.gradle/
+.m2/
+
+### Test Coverage ###
+coverage/
+*.lcov
+.nyc_output/
+jest-coverage/
+jacoco-report/
+test-results/
+
+### OS Files ###
+.DS_Store
+.AppleDouble
+.LSOverride
+Thumbs.db
+$RECYCLE.BIN/
+Desktop.ini
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+*.cab
+
+### Temporary & Cache ###
+.cache/
+.vite/
+.eslintcache
+.stylelintcache
+.parcelcache
+.next/
+out/
+*.tmp
+*.bak
+*.swp
+*.lock~
+*.orig
+
+### Database ###
+*.db
+*.sqlite
+*.sqlite3
+mongodump/
+*.dump
+
+### Docker ###
+.docker/
+docker-compose.override.yml
+
+### Redis & Cache ###
+dump.rdb
+appendonly.aof
+
+### Upload & Generated Files ###
+upload/*
+!upload/.gitkeep
+public/uploads/*
+!public/uploads/.gitkeep
+
+### IDE Specific ###
+.vscode/settings.json
+.vscode/tasks.json
+.vscode/launch.json
+.vscode/extensions.json
+.idea/*
+!.idea/codeStyles
+!.idea/fileTemplates
+!.idea/inspectionProfiles
+!.idea/runConfigurations
+
+### NVM / Node Version ###
+.nvmrc
+
+### Git ###
+.gitignore~
+.git/info/exclude

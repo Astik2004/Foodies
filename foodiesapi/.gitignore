@@ -1,79 +1,205 @@
+##################################################
+# SPRING BOOT BACKEND GITIGNORE
+##################################################
+
 ### Maven ###
 target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+.mvn/
 !.mvn/wrapper/maven-wrapper.jar
+!.mvn/wrapper/maven-wrapper.properties
 .mvn/timing.properties
 
-### Build ###
+### Gradle (if used) ###
+.gradle/
+gradle-app.setting
+!gradle-wrapper.jar
+!gradle/wrapper/gradle-wrapper.jar
+gradle/wrapper/gradle-wrapper.properties
+
+### Build & Compilation ###
 build/
 out/
+*.class
+*.jar
+*.war
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+### Spring Boot ###
+application-local.properties
+application-local.yml
+application-local.yaml
+application-dev.properties
+application-dev.yml
+application-dev.yaml
+application-test.properties
+application-test.yml
+application-test.yaml
+application-prod.properties
+application-prod.yml
+application-prod.yaml
+HELP.md
 
 ### Logs ###
-**/logs/
+logs/
+log/
 *.log
+*.log.*
 *.out
+catalina.out
+nohup.out
+
+### Database ###
+*.db
+*.sqlite
+*.sqlite3
+database/
+data/
+mongodump/
+*.dump
+
+### Redis ###
+dump.rdb
+appendonly.aof
+*.rdb
 
 ### JVM ###
 hs_err_pid*
 replay_pid*
+.jvm.lock
+crash_dumps/
 
-### Spring Boot ###
-application-local.properties
-application-*.yml
-application-*.yaml
-
-### Temporary files ###
-*.tmp
-*.bak
-*.swp
-*.lock
-
-### OS ###
-# Windows
-Thumbs.db
-$RECYCLE.BIN/
-Desktop.ini
-
-# macOS
-.DS_Store
-
-### IntelliJ IDEA ###
+### IDE - IntelliJ IDEA ###
 .idea/
+.idea_modules/
 *.iml
 *.iws
 *.ipr
+*.idsettings
+*.idsettings.xml
+*.iml
 
-### Eclipse ###
+### IDE - Eclipse ###
 .project
 .classpath
 .settings/
 .apt_generated/
+.apt_generated_tests/
 .factorypath
 .springBeans
 .sts4-cache
+bin/
+.metadata/
+.externalToolBuilders/
+.loadpath
 
-### VS Code ###
+### IDE - VS Code ###
 .vscode/
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+!.vscode/launch.json
 
-### NetBeans ###
+### IDE - NetBeans ###
 /nbproject/private/
 /nbbuild/
 /dist/
 /nbdist/
 /.nb-gradle/
+nb-configuration.xml
 
-### Package managers ###
+### IDE - JetBrains ###
+*.sw?
+*~
+.swp
+*.swo
+*.swn
+
+### Temporary & Backup Files ###
+*.tmp
+*.bak
+*.backup
+*.orig
+*.swp
+*.lock~
+*~
+
+### OS Files ###
+.DS_Store
+.AppleDouble
+.LSOverride
+Thumbs.db
+$RECYCLE.BIN/
+Desktop.ini
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+*.cab
+
+### Test Coverage ###
+coverage/
+jacoco-report/
+test-results/
+*.lcov
+.nyc_output/
+
+### Docker ###
+docker-compose.override.yml
+.docker/
+.dockerfile-lock
+*.pid
+
+### Upload & Generated Files ###
+upload/*
+!upload/.gitkeep
+public/uploads/*
+!public/uploads/.gitkeep
+
+### Generated Sources ###
+src/main/generated/
+src/main/generated-sources/
+src/test/generated/
+src/test/generated-sources/
+
+### Node (if frontend bundled) ###
 node_modules/
 package-lock.json
 yarn.lock
+pnpm-lock.yaml
+dist/
 
-### Gradle (in case project contains gradle wrapper) ###
-.gradle/
-gradle-app.setting
-!gradle-wrapper.jar
+### Certificates & Secrets ###
+*.pem
+*.key
+*.crt
+*.p12
+*.jks
+*.keystore
+secrets/
 
-### Docker ###
-/docker/
-*.pid
+### Environment Files ###
+.env
+.env.local
+.env.*.local
+.env.production.local
+.env.test.local
+
+### Cache & Temp ###
+.cache/
+cache/
+.gradle/cache/
+.m2/
+tmp/
+temp/
 
 ### Git ###
 .gitignore~
+.git/info/exclude

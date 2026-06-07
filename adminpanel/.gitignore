@@ -1,4 +1,15 @@
-# Logs
+##################################################
+# REACT ADMIN PANEL GITIGNORE
+##################################################
+
+### Dependencies ###
+node_modules/
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+npm-shrinkwrap.json
+
+### Logs ###
 logs
 *.log
 npm-debug.log*
@@ -7,18 +18,128 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-node_modules
+### Build Output ###
 dist
 dist-ssr
 *.local
+build/
+out/
+coverage/
 
-# Editor directories and files
+### Test Coverage ###
+coverage/
+.nyc_output/
+*.lcov
+
+### IDE - VS Code ###
 .vscode/*
 !.vscode/extensions.json
+!.vscode/settings.json
+!.vscode/launch.json
+.vscode-test
+.vscode-test.log
+
+### IDE - IntelliJ IDEA ###
 .idea
+.idea_modules
+*.iml
+*.iws
+*.ipr
+
+### IDE - Sublime ###
+*.tmlanguage.cache
+*.tmPreferences.cache
+*.stTheme.cache
+*.sublime-workspace
+
+### IDE - Vim ###
+.*.sw[a-z]
+*.sw[a-z]
+*~
+
+### IDE - Other ###
+.project
+.classpath
+.settings/
+.env
 .DS_Store
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
 *.sw?
+
+### OS Files ###
+.DS_Store
+.AppleDouble
+.LSOverride
+Thumbs.db
+$RECYCLE.BIN/
+Desktop.ini
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+*.cab
+
+### Temporary Files ###
+*.tmp
+*.bak
+*.backup
+*.orig
+*.swp
+*~
+
+### Environment Variables ###
+.env
+.env.local
+.env.*.local
+.env.production.local
+.env.test.local
+
+### Cache & Tools ###
+.cache/
+.eslintcache
+.stylelintcache
+.jest-cache/
+.vite/
+.turbo/
+
+### Parcel (if using) ###
+.parcelcache
+
+### Next.js (if adding SSR) ###
+.next/
+out/
+
+### Storybook ###
+.storybook/
+storybook-static/
+
+### npm ###
+npm-debug.log
+.npm
+.eslintcache
+
+### Yarn ###
+yarn-error.log
+
+### pnpm ###
+pnpm-debug.log
+
+### Nuxt.js ###
+.nuxt
+
+### Electron ###
+electron-builder.yml
+electron-builder-config.yml
+dist_electron/
+
+### Misc ###
+.prettierignore
+.prettierrc
+.editorconfig.json
+tsconfig.json.bak
+
+### Git ###
+.gitignore~
+.git/info/exclude

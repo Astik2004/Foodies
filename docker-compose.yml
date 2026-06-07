@@ -1,0 +1,33 @@
+version: '3.9'
+services:
+  redis:
+    image: redis:7-alpine
+    container_name: foodiesapi_redis
+    restart: unless-stopped
+    ports:
+      - '6379:6379'
+    volumes:
+      - redis-data:/data
+    command: ["redis-server", "--save", "60", "1"]
+
+  foodiesapi:
+    build:
+      context: ./foodiesapi
+      dockerfile: Dockerfile
+    container_name: foodiesapi
+    depends_on:
+      - redis
+    ports:
+      - '8080:8080'
+    environment:
+      SPRING_REDIS_HOST: redis
+      SPRING_REDIS_PORT: '6379'
+      SPRING_DATA_MONGODB_URI: ${SPRING_DATA_MONGODB_URI}
+      SPRING_DATA_MONGODB_DATABASE: ${SPRING_DATA_MONGODB_DATABASE}
+      JWT_SECRET_KEY: ${JWT_SECRET_KEY}
+      APP_STORAGE_BASE_URL: ${APP_STORAGE_BASE_URL}
+    volumes:
+      - ./upload:/app/upload
+
+volumes:
+  redis-data:
